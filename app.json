@@ -1,0 +1,18 @@
+{
+  "expo": {
+    "name": "Arostro",
+    "description": "No description",
+    "slug": "arostro",
+    "privacy": "unlisted",
+    "sdkVersion": "19.0.0",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "primaryColor": "#cccccc",
+    "icon": "./assets/icons/app-icon.png",
+    "loading": {
+      "icon": "./assets/icons/loading-icon.png",
+      "hideExponentText": false,
+      "backgroundColor": "#313f59"
+    }
+  }
+}
