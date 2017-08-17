@@ -10,6 +10,8 @@ import {
 import {moviesDataService} from '../services/moviesDataService';
 import {LinearGradient} from 'expo';
 
+import BlurImage from 'react-native-blur-image'
+
 const MyStatusBar = () => (
   <View>
     <StatusBar barStyle="light-content" translucent/>
@@ -41,6 +43,9 @@ class DetailScreen extends React.Component {
     return (
       <View>
         <LinearGradient colors={['#fff', '#e0e0e0']} style={styles.linearGradient}>
+          <BlurImage source={{
+            uri: base_url + this.state.movie.backdrop_path
+          }} style={styles.blurBackground} blurRadius={50}/>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.detailCard}>
               <Image style={styles.detailCardImg} source={{
@@ -70,6 +75,11 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingTop: 20,
     height: '100%'
+  },
+  blurBackground: {
+    position: 'absolute',
+    width: '100%',
+    height: '40%'
   },
   detailCard: {
     marginTop: '15%',

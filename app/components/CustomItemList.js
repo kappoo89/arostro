@@ -34,7 +34,9 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 3,
-    margin: 20
+    margin: 20,
+    marginBottom: 10,
+    marginTop: 10
   },
   customItemListView: {
     flex: 1,
