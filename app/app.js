@@ -2,7 +2,7 @@ import React from 'react';
 import Expo from 'expo';
 
 import HomeScreen from './screens/homeScreen';
-import AboutScreen from './screens/aboutScreen';
+import DetailScreen from './screens/detailScreen';
 
 import {createRouter, NavigationProvider, StackNavigation} from '@expo/ex-navigation';
 

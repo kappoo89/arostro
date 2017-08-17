@@ -1,7 +1,8 @@
 import React from 'react';
-import {ScrollView, Text, View, StyleSheet} from 'react-native';
+import {ScrollView, Text, View, StyleSheet, Button} from 'react-native';
 import {moviesDataService} from '../services/moviesDataService';
-import CustomItem from '../components/CustomItem';
+import CustomItemBig from '../components/CustomItemBig';
+import CustomItemList from '../components/CustomItemList';
 import {LinearGradient} from 'expo';
 
 class HomeScreen extends React.Component {
@@ -12,7 +13,8 @@ class HomeScreen extends React.Component {
       page: 1,
       movies: [],
       scrollOffset: 0,
-      firstLoading: true
+      firstLoading: true,
+      viewType: 0
     }
     downloadMovies = () => {
       moviesDataService
@@ -42,13 +44,19 @@ class HomeScreen extends React.Component {
       .state
       .movies
       .map(item => {
-        return (<CustomItem key={item.id} item={item} navigator={this.props.navigator}/>);
+        if (this.state.viewType === 0) {
+          return (<CustomItemBig key={item.id} item={item} navigator={this.props.navigator}/>);
+        } else if (this.state.viewType === 1) {
+          return (<CustomItemList key={item.id} item={item} navigator={this.props.navigator}/>);
+        }
       })
   }
   render() {
     return (
       <View>
         <LinearGradient colors={['#ffffff', '#e0e0e0']} style={styles.linearGradient}>
+          <Button onPress={() => this._setViewListType(0)} title="A" color="#841584"/>
+          <Button onPress={() => this._setViewListType(1)} title="B" color="#841584"/>
           <ScrollView showsVerticalScrollIndicator={false} onScroll={(event) => {
             this.setState({scrollOffset: event.nativeEvent.contentOffset.y});
           }} onMomentumScrollEnd={() => {
@@ -62,6 +70,13 @@ class HomeScreen extends React.Component {
         </LinearGradient>
       </View>
     );
+  }
+  _setViewListType = (type) => {
+    if (type === 0) {
+      this.setState({viewType: 0});
+    } else if (type === 1) {
+      this.setState({viewType: 1});
+    }
   }
 }
 const styles = StyleSheet.create({

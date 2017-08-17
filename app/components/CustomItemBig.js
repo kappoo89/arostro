@@ -3,15 +3,15 @@ import {View, TouchableHighlight, Image, Text, StyleSheet} from 'react-native';
 
 const base_url = 'https://image.tmdb.org/t/p/w500';
 
-class CustomItem extends React.Component {
+class CustomItemBig extends React.Component {
   render() {
     return (
-      <TouchableHighlight onPress={this._goToDetail} style={styles.cutsomItemWrapper}>
+      <TouchableHighlight onPress={this._goToDetail} style={styles.customItemBigWrapper}>
         <View>
-          <Image style={styles.customItemImg} source={{
+          <Image style={styles.customItemBigImg} source={{
             uri: base_url + this.props.item.poster_path
           }}/>
-          <Text style={styles.customItemText}>
+          <Text style={styles.customItemBigText}>
             {this.props.item.title}
           </Text>
         </View>
@@ -28,7 +28,7 @@ class CustomItem extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  cutsomItemWrapper: {
+  customItemBigWrapper: {
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -38,12 +38,12 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
     margin: 20
   },
-  customItemView: {},
+  customItemBigView: {},
 
-  customItemImg: {
+  customItemBigImg: {
     height: 500
   },
-  customItemText: {
+  customItemBigText: {
     color: '#446476',
     fontSize: 18,
     padding: 20,
@@ -51,4 +51,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default CustomItem;
+export default CustomItemBig;

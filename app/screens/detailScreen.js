@@ -42,14 +42,14 @@ class DetailScreen extends React.Component {
       <View>
         <LinearGradient colors={['#fff', '#e0e0e0']} style={styles.linearGradient}>
           <ScrollView showsVerticalScrollIndicator={false}>
-            <View style={styles.aboutCard}>
-              <Image style={styles.aboutCardImg} source={{
+            <View style={styles.detailCard}>
+              <Image style={styles.detailCardImg} source={{
                 uri: base_url + this.state.movie.backdrop_path
               }}/>
-              <Text style={styles.aboutCardTextTitle}>{this.state.movie.title}</Text>
-              <Text style={styles.aboutCardTextInfo}>{this.state.movie.runtime} {' min'}</Text>
+              <Text style={styles.detailCardTextTitle}>{this.state.movie.title}</Text>
+              <Text style={styles.detailCardTextInfo}>{this.state.movie.runtime} {' min'}</Text>
 
-              <Text style={styles.aboutCardTextStory}>{this.state.movie.overview}</Text>
+              <Text style={styles.detailCardTextStory}>{this.state.movie.overview}</Text>
             </View>
           </ScrollView>
         </LinearGradient>
@@ -57,15 +57,13 @@ class DetailScreen extends React.Component {
     )
   }
   /*
-< Text onPress = {
-  this._goBackHome
-} > Go back home < /Text>*/
   _goBackHome = () => {
     this
       .props
       .navigator
       .pop();
   }
+  */
 }
 const styles = StyleSheet.create({
   linearGradient: {
@@ -73,7 +71,7 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     height: '100%'
   },
-  aboutCard: {
+  detailCard: {
     marginTop: '15%',
     backgroundColor: 'white',
     shadowColor: '#000',
@@ -88,23 +86,23 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     marginBottom: 20
   },
-  aboutCardImg: {
+  detailCardImg: {
     height: 200
   },
-  aboutCardTextTitle: {
+  detailCardTextTitle: {
     color: '#446476',
     fontSize: 18,
     marginTop: 10,
     marginLeft: 10,
     fontWeight: 'bold'
   },
-  aboutCardTextInfo: {
+  detailCardTextInfo: {
     color: '#446476',
     fontSize: 14,
     marginLeft: 10,
     alignSelf: 'flex-start'
   },
-  aboutCardTextStory: {
+  detailCardTextStory: {
     marginTop: 20,
     color: '#446476',
     fontSize: 16,
@@ -114,4 +112,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export DetailScreen AboutScreen;
+export default DetailScreen;
