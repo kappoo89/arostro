@@ -32,8 +32,8 @@ const styles = StyleSheet.create({
       width: 0,
       height: 0
     },
-    shadowOpacity: 0.5,
-    shadowRadius: 5,
+    shadowOpacity: 0.2,
+    shadowRadius: 3,
     margin: 20
   },
   customItemListView: {
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   customItemListImg: {
-height : 105,
+    height: 105,
     width: '20%'
   },
   customItemListText: {

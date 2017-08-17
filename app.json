@@ -13,6 +13,9 @@
       "icon": "./assets/icons/loading-icon.png",
       "hideExponentText": false,
       "backgroundColor": "#313f59"
+    },
+    "packagerOpts": {
+      "assetExts": ["ttf"]
     }
   }
 }

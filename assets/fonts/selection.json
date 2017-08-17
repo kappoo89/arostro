@@ -1,0 +1,93 @@
+{
+  "IcoMoonType": "selection",
+  "icons": [
+    {
+      "icon": {
+        "paths": [
+          "M896 64h-768c-35.328 0-64 28.672-64 64v768c0 35.328 28.672 64 64 64h768c35.328 0 64-28.672 64-64v-768c0-35.328-28.672-64-64-64z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "stop"
+        ],
+        "grid": 32
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "id": 186,
+        "order": 2,
+        "prevSize": 32,
+        "code": 59648,
+        "name": "stop"
+      },
+      "setIdx": 1,
+      "setId": 0,
+      "iconIdx": 185
+    },
+    {
+      "icon": {
+        "paths": [
+          "M96 160c-53.024 0-96 42.976-96 96s42.976 96 96 96 96-42.976 96-96-42.976-96-96-96zM96 416c-53.024 0-96 42.976-96 96s42.976 96 96 96 96-42.976 96-96-42.976-96-96-96zM96 672c-53.024 0-96 42.976-96 96s42.976 96 96 96 96-42.976 96-96-42.976-96-96-96zM320 320h608c35.328 0 64-28.672 64-64s-28.672-64-64-64h-608c-35.328 0-64 28.672-64 64s28.672 64 64 64zM928 448h-608c-35.328 0-64 28.672-64 64s28.672 64 64 64h608c35.328 0 64-28.672 64-64s-28.672-64-64-64zM928 704h-608c-35.328 0-64 28.672-64 64s28.672 64 64 64h608c35.328 0 64-28.672 64-64s-28.672-64-64-64z"
+        ],
+        "attrs": [
+          {}
+        ],
+        "isMulticolor": false,
+        "isMulticolor2": false,
+        "tags": [
+          "list"
+        ],
+        "grid": 32
+      },
+      "attrs": [
+        {}
+      ],
+      "properties": {
+        "id": 194,
+        "order": 3,
+        "prevSize": 32,
+        "code": 59649,
+        "name": "list"
+      },
+      "setIdx": 1,
+      "setId": 0,
+      "iconIdx": 193
+    }
+  ],
+  "height": 1024,
+  "metadata": {
+    "name": "icomoon"
+  },
+  "preferences": {
+    "showGlyphs": true,
+    "showCodes": true,
+    "showQuickUse": true,
+    "showQuickUse2": true,
+    "showSVGs": true,
+    "fontPref": {
+      "prefix": "icon-",
+      "metadata": {
+        "fontFamily": "icomoon"
+      },
+      "metrics": {
+        "emSize": 1024,
+        "baseline": 6.25,
+        "whitespace": 50
+      }
+    },
+    "imagePref": {
+      "prefix": "icon-",
+      "png": true,
+      "useClassSelector": true,
+      "color": 0,
+      "bgColor": 16777215
+    },
+    "historySize": 50
+  }
+}

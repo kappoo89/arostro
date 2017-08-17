@@ -1,12 +1,15 @@
 import React from 'react';
-import {ScrollView, Text, View, StyleSheet, Button} from 'react-native';
+import {ScrollView, Text, View, StyleSheet} from 'react-native';
 import {moviesDataService} from '../services/moviesDataService';
 import CustomItemBig from '../components/CustomItemBig';
 import CustomItemList from '../components/CustomItemList';
 import {LinearGradient} from 'expo';
 
-class HomeScreen extends React.Component {
+import {createIconSetFromIcoMoon} from '@expo/vector-icons';
+import icoMoonConfig from '../../assets/fonts/selection.json';
+const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'FontName');
 
+class HomeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -38,7 +41,6 @@ class HomeScreen extends React.Component {
   componentWillMount() {
     downloadMovies();
   }
-
   renderItems() {
     return this
       .state
@@ -51,12 +53,15 @@ class HomeScreen extends React.Component {
         }
       })
   }
+
   render() {
     return (
       <View>
         <LinearGradient colors={['#ffffff', '#e0e0e0']} style={styles.linearGradient}>
-          <Button onPress={() => this._setViewListType(0)} title="A" color="#841584"/>
-          <Button onPress={() => this._setViewListType(1)} title="B" color="#841584"/>
+          <View style={styles.buttonBox}>
+            <Text onPress={() => this._setViewListType(0)}><Icon name="stop" size={32} color="#446476"/></Text>
+            <Text onPress={() => this._setViewListType(1)}><Icon name="list" size={32} color="#446476"/></Text>
+          </View>
           <ScrollView showsVerticalScrollIndicator={false} onScroll={(event) => {
             this.setState({scrollOffset: event.nativeEvent.contentOffset.y});
           }} onMomentumScrollEnd={() => {
@@ -82,6 +87,18 @@ class HomeScreen extends React.Component {
 const styles = StyleSheet.create({
   linearGradient: {
     marginTop: 20
+  },
+  buttonBox: {
+    padding: 20,
+    flexDirection: 'row',
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 2,
+    zIndex: 10,
+    justifyContent: 'space-around'
   }
 });
 
