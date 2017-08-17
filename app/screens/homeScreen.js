@@ -37,6 +37,13 @@ class HomeScreen extends React.Component {
           console.error(error);
         });
     }
+
+    buttonStyle = (typeExpected) => {
+      if (typeExpected === this.state.viewType) {
+        return {color: '#446476'}
+      }
+      return {color: '#446476', opacity: 0.5}
+    }
   }
   componentWillMount() {
     downloadMovies();
@@ -59,8 +66,8 @@ class HomeScreen extends React.Component {
       <View>
         <LinearGradient colors={['#ffffff', '#e0e0e0']} style={styles.linearGradient}>
           <View style={styles.buttonBox}>
-            <Text onPress={() => this._setViewListType(0)}><Icon name="stop" size={32} color="#446476"/></Text>
-            <Text onPress={() => this._setViewListType(1)}><Icon name="list" size={32} color="#446476"/></Text>
+            <Text onPress={() => this._setViewListType(0)}><Icon name="stop" size={32} style={buttonStyle(0)}/></Text>
+            <Text onPress={() => this._setViewListType(1)}><Icon name="list" size={32} style={buttonStyle(1)}/></Text>
           </View>
           <ScrollView showsVerticalScrollIndicator={false} onScroll={(event) => {
             this.setState({scrollOffset: event.nativeEvent.contentOffset.y});
@@ -99,6 +106,9 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     zIndex: 10,
     justifyContent: 'space-around'
+  },
+  test: {
+    color: 'red'
   }
 });
 
