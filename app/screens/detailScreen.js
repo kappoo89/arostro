@@ -10,9 +10,8 @@ import {
 } from 'react-native';
 import {moviesDataService} from '../services/moviesDataService';
 import {LinearGradient} from 'expo';
-
+import RatingComponent from '../components/ratingComponent';
 import BlurImage from 'react-native-blur-image';
-
 import {createIconSetFromIcoMoon} from '@expo/vector-icons';
 import icoMoonConfig from '../../assets/fonts/selection.json';
 const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'FontName');
@@ -35,7 +34,6 @@ class DetailScreen extends React.Component {
   componentWillMount() {
 
     AsyncStorage.getItem('@myFavoriteMovie:' + this.props.route.params.id, (err, result) => {
-      console.log(result);
       if (result) {
         this.setState({heartStatus: 'heart2'});
       }
@@ -65,9 +63,9 @@ class DetailScreen extends React.Component {
                 uri: base_url + this.state.movie.backdrop_path
               }}/>
               <Text onPress={() => this._toggleFavorite(this.state.movie.id)} style={styles.detailCardHeart}><Icon name={this.state.heartStatus} size={25}/></Text>
+              <RatingComponent rating={this.state.movie.vote_average}/>
               <Text style={styles.detailCardTextTitle}>{this.state.movie.title}</Text>
               <Text style={styles.detailCardTextInfo}>{this.state.movie.runtime} {' min'}</Text>
-
               <Text style={styles.detailCardTextStory}>{this.state.movie.overview}</Text>
             </View>
           </ScrollView>
@@ -132,7 +130,14 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
     padding: 10,
     right: 0,
-    color: '#fff'
+    color: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 0
+    },
+    shadowOpacity: 0.4,
+    shadowRadius: 1
   },
   detailCardTextTitle: {
     color: '#446476',
