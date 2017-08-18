@@ -109,9 +109,6 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     zIndex: 10,
     justifyContent: 'space-around'
-  },
-  test: {
-    color: 'red'
   }
 });
 

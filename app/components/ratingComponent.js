@@ -15,13 +15,13 @@ class RatingComponent extends React.Component {
     }
     var stars = [];
     for (let i = 0; i < this.state.starFull; i++) {
-      stars.push(<Icon style={styles.star} name="star-full" size={25}/>)
+      stars.push(<Icon key={'0_' + i} style={styles.star} name="star-full" size={25}/>)
     }
     for (let i = 0; i < this.state.starHalf; i++) {
-      stars.push(<Icon style={styles.star} name="star-half" size={25}/>)
+      stars.push(<Icon key={'1_' + i} style={styles.star} name="star-half" size={25}/>)
     }
     for (let i = 0; i < this.state.starEmpty; i++) {
-      stars.push(<Icon style={styles.star} name="star-empty" size={25}/>)
+      stars.push(<Icon key={'2_' + i} style={styles.star} name="star-empty" size={25}/>)
     }
 
     return (
