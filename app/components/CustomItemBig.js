@@ -18,7 +18,6 @@ class CustomItemBig extends React.Component {
       </TouchableHighlight>
     );
   }
-
   _goToDetail = () => {
     this
       .props
@@ -26,7 +25,6 @@ class CustomItemBig extends React.Component {
       .push('detail', {id: this.props.item.id});
   }
 }
-
 const styles = StyleSheet.create({
   customItemBigWrapper: {
     shadowColor: '#000',

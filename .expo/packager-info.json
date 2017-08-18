@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
+  "expoServerPort": 19001,
   "packagerPort": 19002,
-  "packagerPid": 38349,
+  "packagerPid": 39451,
   "expoServerNgrokUrl": "https://nm-b59.kappoo89.arostro-1-0.exp.direct",
   "packagerNgrokUrl": "https://packager.nm-b59.kappoo89.arostro-1-0.exp.direct",
-  "ngrokPid": 38366
+  "ngrokPid": 39465
 }

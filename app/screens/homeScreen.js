@@ -2,9 +2,7 @@ import React from 'react';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
 
 import {moviesDataService} from '../services/moviesDataService';
-
-import CustomItemBig from '../components/CustomItemBig';
-import CustomItemList from '../components/CustomItemList';
+import MovieComponent from '../components/movieComponent';
 
 import {LinearGradient} from 'expo';
 
@@ -20,9 +18,15 @@ class HomeScreen extends React.Component {
       movies: [],
       scrollOffset: 0,
       firstLoading: true,
+      isLoading: false,
       viewType: 0
     }
     downloadMovies = () => {
+
+      if (this.state.scrollOffset <= 0 && !this.state.firstLoading || this.state.isLoading) {
+        return;
+      }
+      this.setState({isLoading: true});
       moviesDataService
         .getMovies(this.state.page)
         .then((response) => response.json())
@@ -33,7 +37,8 @@ class HomeScreen extends React.Component {
               .movies
               .concat(responseJson.results),
             page: this.state.page + 1,
-            firstLoading: false
+            firstLoading: false,
+            isLoading: false
           });
         })
         .catch((error) => {
@@ -56,14 +61,10 @@ class HomeScreen extends React.Component {
       .state
       .movies
       .map(item => {
-        if (this.state.viewType === 0) {
-          return (<CustomItemBig key={item.id} item={item} navigator={this.props.navigator}/>);
-        } else if (this.state.viewType === 1) {
-          return (<CustomItemList key={item.id} item={item} navigator={this.props.navigator}/>);
-        }
+        return (<MovieComponent key={item.id} item={item} navigator={this.props.navigator} view={this.state.viewType}/>);
       })
   }
-
+  /**/
   render() {
     return (
       <View>
@@ -72,12 +73,9 @@ class HomeScreen extends React.Component {
             <Text onPress={() => this._setViewListType(0)}><Icon name="stop" size={32} style={buttonStyle(0)}/></Text>
             <Text onPress={() => this._setViewListType(1)}><Icon name="list" size={32} style={buttonStyle(1)}/></Text>
           </View>
-          <ScrollView showsVerticalScrollIndicator={false} onScroll={(event) => {
+          <ScrollView showsVerticalScrollIndicator={false} scrollEventThrottle={16} onScroll={(event) => {
             this.setState({scrollOffset: event.nativeEvent.contentOffset.y});
           }} onMomentumScrollEnd={() => {
-            if (this.state.scrollOffset <= 0 && !this.state.firstLoading) {
-              return;
-            }
             downloadMovies()
           }}>
             {this.renderItems()}
@@ -92,6 +90,9 @@ class HomeScreen extends React.Component {
     } else if (type === 1) {
       this.setState({viewType: 1});
     }
+  }
+  _onScroll = (event) => {
+    console.log(event);
   }
 }
 const styles = StyleSheet.create({
