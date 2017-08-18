@@ -1,8 +1,11 @@
 import React from 'react';
 import {ScrollView, Text, View, StyleSheet} from 'react-native';
+
 import {moviesDataService} from '../services/moviesDataService';
+
 import CustomItemBig from '../components/CustomItemBig';
 import CustomItemList from '../components/CustomItemList';
+
 import {LinearGradient} from 'expo';
 
 import {createIconSetFromIcoMoon} from '@expo/vector-icons';

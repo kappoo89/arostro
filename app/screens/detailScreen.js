@@ -5,12 +5,17 @@ import {
   Image,
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  AsyncStorage
 } from 'react-native';
 import {moviesDataService} from '../services/moviesDataService';
 import {LinearGradient} from 'expo';
 
-import BlurImage from 'react-native-blur-image'
+import BlurImage from 'react-native-blur-image';
+
+import {createIconSetFromIcoMoon} from '@expo/vector-icons';
+import icoMoonConfig from '../../assets/fonts/selection.json';
+const Icon = createIconSetFromIcoMoon(icoMoonConfig, 'FontName');
 
 const MyStatusBar = () => (
   <View>
@@ -23,11 +28,19 @@ class DetailScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movie: {}
+      movie: {},
+      heartStatus: 'heart'
     }
   }
   componentWillMount() {
-    console.log('this.props.route.params.id', this.props.route.params.id);
+
+    AsyncStorage.getItem('@myFavoriteMovie:' + this.props.route.params.id, (err, result) => {
+      console.log(result);
+      if (result) {
+        this.setState({heartStatus: 'heart2'});
+      }
+    });
+
     moviesDataService
       .getMovie(this.props.route.params.id)
       .then((response) => response.json())
@@ -51,6 +64,7 @@ class DetailScreen extends React.Component {
               <Image style={styles.detailCardImg} source={{
                 uri: base_url + this.state.movie.backdrop_path
               }}/>
+              <Text onPress={() => this._toggleFavorite(this.state.movie.id)} style={styles.detailCardHeart}><Icon name={this.state.heartStatus} size={25}/></Text>
               <Text style={styles.detailCardTextTitle}>{this.state.movie.title}</Text>
               <Text style={styles.detailCardTextInfo}>{this.state.movie.runtime} {' min'}</Text>
 
@@ -60,6 +74,19 @@ class DetailScreen extends React.Component {
         </LinearGradient>
       </View>
     )
+  }
+  _toggleFavorite = (id) => {
+    AsyncStorage.getItem('@myFavoriteMovie:' + this.props.route.params.id, (err, result) => {
+      if (result) {
+        AsyncStorage.removeItem('@myFavoriteMovie:' + this.props.route.params.id, (err, result) => {
+          this.setState({heartStatus: 'heart'});
+        });
+      } else {
+        AsyncStorage.setItem('@myFavoriteMovie:' + this.props.route.params.id, JSON.stringify({id: id}), (err, result) => {
+          this.setState({heartStatus: 'heart2'});
+        });
+      }
+    });
   }
   /*
   _goBackHome = () => {
@@ -81,6 +108,7 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '40%'
   },
+
   detailCard: {
     marginTop: '15%',
     backgroundColor: 'white',
@@ -98,6 +126,13 @@ const styles = StyleSheet.create({
   },
   detailCardImg: {
     height: 200
+  },
+  detailCardHeart: {
+    position: 'absolute',
+    backgroundColor: 'transparent',
+    padding: 10,
+    right: 0,
+    color: '#fff'
   },
   detailCardTextTitle: {
     color: '#446476',
