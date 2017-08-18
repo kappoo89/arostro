@@ -6,7 +6,8 @@ import {
   View,
   Text,
   StyleSheet,
-  AsyncStorage
+  AsyncStorage,
+  Platform
 } from 'react-native';
 import {moviesDataService} from '../services/moviesDataService';
 import {LinearGradient} from 'expo';
@@ -29,6 +30,12 @@ class DetailScreen extends React.Component {
     this.state = {
       movie: {},
       heartStatus: 'heart'
+    }
+    blurBackground = () => {
+      if (Platform.OS !== 'ios') {
+        return {opacity: 0}
+      }
+
     }
   }
   componentWillMount() {
@@ -56,7 +63,7 @@ class DetailScreen extends React.Component {
         <LinearGradient colors={['#fff', '#e0e0e0']} style={styles.linearGradient}>
           <BlurImage source={{
             uri: base_url + this.state.movie.backdrop_path
-          }} style={styles.blurBackground} blurRadius={50}/>
+          }} style={[styles.blurBackground, blurBackground()]} blurRadius={50}/>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View style={styles.detailCard}>
               <Image style={styles.detailCardImg} source={{
@@ -106,7 +113,6 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '40%'
   },
-
   detailCard: {
     marginTop: '15%',
     backgroundColor: 'white',
