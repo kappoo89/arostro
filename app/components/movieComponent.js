@@ -27,9 +27,11 @@ class MovieComponent extends React.Component {
             <Image style={styles.customItemListImg} source={{
               uri: base_url + this.props.item.poster_path
             }}/>
-            <Text style={styles.customItemListText}>
-              {this.props.item.title}
-            </Text>
+            <View style={styles.customItemListTextWrapper}>
+              <Text style={styles.customItemListText}>
+                {this.props.item.title}
+              </Text>
+            </View>
           </View>
         </TouchableHighlight>
       );
@@ -87,12 +89,18 @@ const styles = StyleSheet.create({
     height: 105,
     width: '20%'
   },
+  customItemListTextWrapper: {
+    width: '80%',
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    backgroundColor: '#fff'
+  },
   customItemListText: {
     color: '#446476',
-    width: '80%',
-    fontSize: 18,
-    padding: 20,
-    backgroundColor: '#fff'
+    fontSize: 20,
+    marginLeft: 20,
+    marginRight: 20
   }
 });
 
